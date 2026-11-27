@@ -1,0 +1,263 @@
+# Panel de edición de La Voz del Bajío (Pages CMS · https://app.pagescms.org)
+# Cada nota, columna, columnista y sátira es una entrada con su propio botón
+# para editar o borrar. Al guardar, GitHub publica el sitio en 1 o 2 minutos.
+
+media:
+  input: img
+  output: /img
+  rename: safe
+  categories: [image]
+
+content:
+
+  # ---------------------------------------------------------------- NOTICIAS
+  - name: noticias
+    label: "📰 Noticias"
+    type: collection
+    path: contenido/noticias
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      fields: [titulo, fecha, categoria, principal, ocultar]
+      primary: titulo
+      sort: [fecha, titulo]
+      default: { sort: fecha, order: desc }
+    fields:
+      - name: titulo
+        label: Titular
+        type: string
+        required: true
+      - name: fecha
+        label: Fecha de publicación
+        type: date
+        required: true
+      - name: categoria
+        label: Categoría
+        type: select
+        options:
+          values: [Local, Nacional, Última hora, Explicado, Verificado]
+      - name: ciudad
+        label: Ciudad
+        type: string
+        description: "Ej. León, Gto."
+      - name: principal
+        label: Nota principal de la portada
+        type: boolean
+        description: "Actívalo en UNA sola nota. Si ninguna lo tiene, se usa la más reciente."
+      - name: resumen
+        label: Resumen
+        type: text
+        description: "Una o dos frases. Aparece en la portada y debajo del titular."
+      - name: foto
+        label: Foto
+        type: image
+        description: "Foto horizontal. El sitio la pasa a blanco y negro con el verde de La Voz."
+      - name: pie
+        label: Pie de foto y crédito
+        type: string
+      - name: firma
+        label: Firma
+        type: string
+        description: "Déjalo vacío para firmar como Redacción La Voz del Bajío."
+      - name: cuerpo
+        label: Texto de la nota
+        type: text
+        description: "Separa los párrafos con una línea en blanco. Para un subtítulo, empieza la línea con ## "
+      - name: muestra
+        label: Es contenido de muestra
+        type: boolean
+        description: "Desactívalo en las notas reales."
+      - name: ocultar
+        label: Ocultar del sitio
+        type: boolean
+        description: "Quita la nota del sitio sin borrarla."
+
+  # ------------------------------------------------------------ LA OPINIÓN
+  - name: columnas
+    label: "✍️ La Opinión · Columnas"
+    type: collection
+    path: contenido/columnas
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      fields: [titulo, autor, fecha, ocultar]
+      primary: titulo
+      sort: [fecha, titulo]
+      default: { sort: fecha, order: desc }
+    fields:
+      - name: titulo
+        label: Título de la columna
+        type: string
+        required: true
+      - name: autor
+        label: Columnista
+        type: reference
+        required: true
+        options:
+          collection: columnistas
+          value: "{path}"
+          label: "{fields.nombre}"
+          search: "fields.nombre"
+      - name: fecha
+        label: Fecha de publicación
+        type: date
+        required: true
+      - name: cita
+        label: Frase destacada
+        type: text
+        description: "La frase más potente. Se muestra grande, entre comillas verdes."
+      - name: clave
+        label: Fragmento a subrayar
+        type: string
+        description: "Copia aquí unas palabras EXACTAS del texto; se subrayan en verde (una sola vez)."
+      - name: cuerpo
+        label: Texto de la columna
+        type: text
+        description: "Separa los párrafos con una línea en blanco. Para un subtítulo, empieza la línea con ## "
+      - name: muestra
+        label: Es contenido de muestra
+        type: boolean
+      - name: ocultar
+        label: Ocultar del sitio
+        type: boolean
+
+  - name: columnistas
+    label: "👤 La Opinión · Columnistas"
+    type: collection
+    path: contenido/columnistas
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      fields: [nombre, cargo, orden, ocultar]
+      primary: nombre
+      sort: [orden, nombre]
+      default: { sort: orden, order: asc }
+    fields:
+      - name: nombre
+        label: Nombre y apellido
+        type: string
+        required: true
+      - name: cargo
+        label: Cargo o actividad
+        type: string
+      - name: retrato
+        label: Retrato
+        type: image
+        description: "Foto de frente o tres cuartos. El sitio la muestra en blanco y negro."
+      - name: orden
+        label: Orden en la fila de retratos
+        type: number
+        description: "1 aparece primero."
+      - name: muestra
+        label: Es contenido de muestra
+        type: boolean
+      - name: ocultar
+        label: Ocultar del sitio
+        type: boolean
+        description: "Quita a la persona de la fila. Sus columnas siguen guardadas."
+
+  # ------------------------------------------------------ LA FE DE ERRATAS
+  - name: erratas
+    label: "✏️ La Fe de Erratas"
+    type: collection
+    path: contenido/erratas
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      fields: [titulo, tipo, fecha, destacada, ocultar]
+      primary: titulo
+      sort: [fecha, titulo]
+      default: { sort: fecha, order: desc }
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+      - name: tipo
+        label: Tipo de pieza
+        type: select
+        required: true
+        options:
+          values:
+            - { name: errata, label: "Errata (Donde dice / Debe decir)" }
+            - { name: meme, label: "Meme" }
+            - { name: titular, label: "Titular imposible" }
+            - { name: semana, label: "Erratas de la semana" }
+      - name: fecha
+        label: Fecha
+        type: date
+        required: true
+      - name: destacada
+        label: Errata del día
+        type: boolean
+        description: "Solo para el tipo Errata. Actívalo en una sola."
+      - name: dondeDice
+        label: "Donde dice… (solo Errata)"
+        type: string
+      - name: debeDecir
+        label: "Debe decir… (solo Errata)"
+        type: string
+      - name: resaltar
+        label: "Palabras a resaltar en amarillo (solo Errata)"
+        type: string
+        description: "Copia unas palabras EXACTAS de «Debe decir»."
+      - name: foto
+        label: "Foto (Meme y Titular imposible)"
+        type: image
+      - name: lista
+        label: "Erratas de la lista (solo Erratas de la semana)"
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.debeDecir}"
+        fields:
+          - name: dondeDice
+            label: Donde dice
+            type: string
+          - name: debeDecir
+            label: Debe decir
+            type: string
+      - name: nota
+        label: Nota a mano en rojo
+        type: string
+        description: "Máximo cinco palabras."
+      - name: texto
+        label: Texto de la publicación
+        type: text
+        description: "En el Meme es el texto de la banda. En las demás, el texto que acompaña la pieza."
+      - name: muestra
+        label: Es contenido de muestra
+        type: boolean
+      - name: ocultar
+        label: Ocultar del sitio
+        type: boolean
+
+  # ------------------------------------------------------------ AJUSTES
+  - name: config
+    label: "⚙️ Ajustes del sitio"
+    type: file
+    path: contenido/config.json
+    format: json
+    fields:
+      - name: facebook
+        label: Enlace de Facebook
+        type: string
+      - name: instagram
+        label: Enlace de Instagram
+        type: string
+      - name: avisoMuestra
+        label: Aviso de versión de prueba
+        type: text
+        description: "Bórralo cuando ya no haya contenido de muestra."
+      - name: firmaRedaccion
+        label: Firma de la redacción
+        type: string

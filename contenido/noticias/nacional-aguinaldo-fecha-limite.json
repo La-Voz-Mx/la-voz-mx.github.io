@@ -1,0 +1,12 @@
+{
+  "muestra": true,
+  "categoria": "Nacional",
+  "ciudad": "México",
+  "fecha": "2026-11-24",
+  "titulo": "Aguinaldo 2026: la fecha límite y cómo calcular el tuyo",
+  "resumen": "La ley marca que debe pagarse antes del 20 de diciembre y que equivale al menos a 15 días de salario. Te explicamos en 30 segundos.",
+  "foto": "img/panorama-guanajuato.jpg",
+  "pie": "Panorámica de Guanajuato. Foto de muestra (Pexels, licencia libre).",
+  "cuerpo": "La Ley Federal del Trabajo establece que el aguinaldo debe pagarse antes del 20 de diciembre y que equivale, como mínimo, a 15 días de salario.\n\n## Cómo calcularlo\n\nDivide tu salario mensual entre 30 para obtener tu salario diario y multiplícalo por 15. Si entraste a trabajar este año, se paga la parte proporcional a los días trabajados.\n\nSi no te lo pagan a tiempo, puedes acudir a la Procuraduría Federal de la Defensa del Trabajo (Profedet), que da asesoría gratuita.\n\nNota de muestra para el diseño del sitio. Verifica cifras y fechas antes de publicarla.",
+  "principal": false
+}

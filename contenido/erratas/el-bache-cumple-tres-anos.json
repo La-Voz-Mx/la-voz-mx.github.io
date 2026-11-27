@@ -1,0 +1,12 @@
+{
+  "muestra": true,
+  "tipo": "errata",
+  "destacada": true,
+  "fecha": "2026-11-27",
+  "titulo": "El bache cumple tres años",
+  "dondeDice": "El bache será reparado esta semana.",
+  "debeDecir": "El bache cumple tres años esta semana. Habrá pastel.",
+  "resaltar": "Habrá pastel.",
+  "nota": "¡salud, bache!",
+  "texto": "La corrección del día llega con velitas. Esto es sátira: no es noticia real."
+}

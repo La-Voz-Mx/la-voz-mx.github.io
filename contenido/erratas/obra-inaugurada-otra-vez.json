@@ -1,0 +1,11 @@
+{
+  "muestra": true,
+  "tipo": "errata",
+  "fecha": "2026-11-24",
+  "titulo": "La obra concluida",
+  "dondeDice": "Obra concluida.",
+  "debeDecir": "Obra inaugurada. Por tercera vez.",
+  "resaltar": "Por tercera vez.",
+  "nota": "y van tres",
+  "texto": "Fe de erratas para el listón que ya conoce la obra mejor que los vecinos. Esto es sátira: no es noticia real."
+}

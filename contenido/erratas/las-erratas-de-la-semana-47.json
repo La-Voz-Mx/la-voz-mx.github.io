@@ -1,0 +1,26 @@
+{
+  "muestra": true,
+  "tipo": "semana",
+  "fecha": "2026-11-21",
+  "titulo": "Las erratas de la semana",
+  "lista": [
+    {
+      "dondeDice": "Transporte público eficiente.",
+      "debeDecir": "Transporte público: deporte extremo de 6 a 9."
+    },
+    {
+      "dondeDice": "Tráfico moderado en el bulevar.",
+      "debeDecir": "Tráfico: estacionamiento con vista al bulevar."
+    },
+    {
+      "dondeDice": "Consulta ciudadana abierta.",
+      "debeDecir": "Consulta ciudadana ya decidida."
+    },
+    {
+      "dondeDice": "Lluvias ligeras esta tarde.",
+      "debeDecir": "Lluvias ligeras. Calles convertidas en río."
+    }
+  ],
+  "nota": "guárdala",
+  "texto": "El resumen de la semana para guardar y compartir. Esto es sátira: no es noticia real."
+}
